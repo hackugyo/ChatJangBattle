@@ -1,0 +1,19 @@
+script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
+script(src='/socket.io/socket.io.js')
+script(type='text/javascript', src='/javascripts/client.js')
+
+h1 Socket.IO Demo
+div
+  h2 Send message
+  span Name:
+  input#name(type='text',name='name')
+  form(onsubmit='return send_p()')
+    input(type='submit',value='ぱー')
+  form(onsubmit='return send_c()')
+    input(type='submit',value='ちょき')
+  form(onsubmit='return send_g()')
+    input(type='submit',value='ぐー')
+    
+div
+  h3 Log
+  ul#log

@@ -82,12 +82,17 @@ io.of('/chat').on('connection', function(socket) {
     broadcast('chat.add', data);
     if (socket.current_points >= 20) {
       socket.current_points = 0;
-      broadcast('chat.add', {
+      master_message = {
         time:Date.now(),
         name:'__system__',
         message:data.name + ' win!! reset ' + data.name + ' \'s points.',
         points:0
-      });
+      };
+      broadcast('chat.add', master_message);
+      chats.push(master_message);
+      // 勝者が決まったので，chatsを圧縮する
+      chats = chats.slice(-40);
+      // ここで他の全員の得点を0にしたりするといいかも……
     }      
   });
   
@@ -108,8 +113,10 @@ function count_wins(message, socket_id) {
     if (enemy.is_ready(socket_id)) {
       // FakeIt, じゃんけん勝敗を判定する必要がある
       if (win(message, enemy.last_message)) {
-
         points += 1;
+      } else if (message !== enemy.last_message) {
+        // あいこでなければ負けなので，1点減らす
+        points -= 1;
       }
     }
   }

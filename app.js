@@ -33,6 +33,15 @@ var io = require('socket.io').listen(app);
 var chats = [];
 var sockets = {};
 
+// heroku対応
+// assuming io is the Socket.IO server object
+// see http://stackoverflow.com/questions/6223867/can-i-set-up-socket-io-chat-on-heroku
+io.configure(function () {
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
+});
+
+
 // broadcast function
 function broadcast(method, message) {
   // 各socketに対して...
@@ -131,11 +140,14 @@ function win(message, enemy_message) {
 // Routes
 
 app.get('/', routes.index);
+app.get('/index', function(req, res) {
+  res.send('heroku_node.js_express_socket.io');
+});
 app.get('/socket', function(req, res) {
   res.render('socketio', {title:'Socket.IO DEMO'});
 });
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 5000;
 app.listen(port, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });

@@ -7,9 +7,9 @@ function addlog(data) {
       + ':' + date.getSeconds() + ')';
   var text;
   if (data.points > 0) {
-    text = text_first + ' (' + data.points + ' points get!) ' + text_last;
+    text = text_first + ' (' + data.points + ' points get! =>' + data.current_points + ') ' + text_last;
   } else if (data.points < 0 ){
-    text = text_first + ' (' + (data.points * -1) + ' points lost...) ' + text_last;
+    text = text_first + ' (' + (data.points * -1) + ' points lost...=>' + data.current_points + ') ' + text_last;
   } else {
     text = text_first + text_last;
   }

@@ -73,10 +73,15 @@ io.of('/chat').on('connection', function(socket) {
     data.time = Date.now();
     points = count_wins(data.message, socket_id, sockets);
     data.points = points;
+
     // 発言結果を格納
     socket.last_message = data.message;
     socket.current_points = socket.current_points || 0;
     socket.current_points += points;
+    if (socket.current_points < 0) {
+      socket.current_points = 0;
+    }
+    data.current_points = socket.current_points;
     
     chats.push(data);
     broadcast('chat.add', data);
@@ -114,10 +119,10 @@ function count_wins(message, socket_id) {
       // FakeIt, じゃんけん勝敗を判定する必要がある
       if (win(message, enemy.last_message)) {
         points += 1;
-      } else if (message !== enemy.last_message) {
+      } //else if (message !== enemy.last_message) {
         // あいこでなければ負けなので，1点減らす
-        points -= 1;
-      }
+        // points -= 1;
+      //}
     }
   }
     return points;

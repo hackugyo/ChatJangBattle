@@ -2,17 +2,22 @@ script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
 script(src='/socket.io/socket.io.js')
 script(type='text/javascript', src='/javascripts/client.js')
 
-h1 Socket.IO Demo
+h1 JANG Battle!!
 div
-  h2 Send message
-  span Name:
-  input#name(type='text',name='name')
-  form(onsubmit='return send_p()')
+  h2 説明
+  p 名前を入れたら手を入力してください．
+  p 他のプレイヤとその手でじゃんけんをして，勝った数だけポイントが入ります．
+  p 20点先取．
+  p 他のプレイヤもリアルタイムで手を変えてくるので，見切って適切な手を出しましょう．
+  p Name:
+    input#name(type='text',name='name')
+  form(onsubmit='return send_p()', style='float:left;')
     input(type='submit',value='ぱー')
-  form(onsubmit='return send_c()')
+  form(onsubmit='return send_c()', style='float:left;')
     input(type='submit',value='ちょき')
-  form(onsubmit='return send_g()')
+  form(onsubmit='return send_g()', style='float:left;')
     input(type='submit',value='ぐー')
+  p(style='clear: both;')
     
 div
   h3 Log

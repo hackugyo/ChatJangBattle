@@ -2,13 +2,18 @@
 // add chat log
 function addlog(data) {
   var date = new Date(data.time);
+  var text_first = data.name + ' : ' + data.message;
+  var text_middle = ' (' + data.points + ' points get!) ';
+  var text_last = ' (' + date.getHours() + ':' + date.getMinutes()
+      + ':' + date.getSeconds() + ')';
+  var text;
+  if (data.points > 0) {
+    text = text_first + text_middle + text_last;
+  } else {
+    text = text_first + text_last;
+  }
   console.log(date);
-  $('#log').prepend($('<li/>').text(
-    data.name + ' : ' + data.message
-        + ' (' + data.point + ') '
-        + ' (' + date.getHours() + ':' + date.getMinutes()
-        + ':' + date.getSeconds() + ')')
-                   );
+  $('#log').prepend($('<li/>').text(text));
 }
 
 var socket = io.connect('http://localhost:3000/chat');

@@ -5,6 +5,7 @@ function addlog(data) {
   console.log(date);
   $('#log').prepend($('<li/>').text(
     data.name + ' : ' + data.message
+        + ' (' + data.point + ') '
         + ' (' + date.getHours() + ':' + date.getMinutes()
         + ':' + date.getSeconds() + ')')
                    );
@@ -12,11 +13,14 @@ function addlog(data) {
 
 var socket = io.connect('http://localhost:3000/chat');
 
+// 一覧表示要請を検知し，ログを表示する
 socket.on('chat.list', function(list) {
   for (var i = 0; i < list.length; i++) {
     addlog(list[i]);
   }
 });
+
+// 発言追加要請を検知し，追加する
 socket.on('chat.add', function(data) {
   addlog(data);
 });

@@ -131,6 +131,9 @@ function win(message, enemy_message) {
 // Routes
 
 app.get('/', routes.index);
+app.get('/index', function(req, res) {
+  res.send('heroku_node.js_express_socket.io');
+});
 app.get('/socket', function(req, res) {
   res.render('socketio', {title:'Socket.IO DEMO'});
 });

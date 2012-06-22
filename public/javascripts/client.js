@@ -3,12 +3,13 @@
 function addlog(data) {
   var date = new Date(data.time);
   var text_first = data.name + ' : ' + data.message;
-  var text_middle = ' (' + data.points + ' points get!) ';
   var text_last = ' (' + date.getHours() + ':' + date.getMinutes()
       + ':' + date.getSeconds() + ')';
   var text;
   if (data.points > 0) {
-    text = text_first + text_middle + text_last;
+    text = text_first + ' (' + data.points + ' points get!) ' + text_last;
+  } else if (data.points < 0 ){
+    text = text_first + ' (' + (data.points * -1) + ' points lost...) ' + text_last;
   } else {
     text = text_first + text_last;
   }

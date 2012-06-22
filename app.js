@@ -33,6 +33,15 @@ var io = require('socket.io').listen(app);
 var chats = [];
 var sockets = {};
 
+// heroku対応
+// assuming io is the Socket.IO server object
+// see http://stackoverflow.com/questions/6223867/can-i-set-up-socket-io-chat-on-heroku
+io.configure(function () {
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
+});
+
+
 // broadcast function
 function broadcast(method, message) {
   // 各socketに対して...

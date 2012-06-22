@@ -16,7 +16,8 @@ function addlog(data) {
   $('#log').prepend($('<li/>').text(text));
 }
 
-var socket = io.connect('http://localhost:3000/chat');
+// var socket = io.connect('http://localhost:3000/chat');
+var socket = io.connect('http://jangbattle.com:3000/chat");
 
 // 一覧表示要請を検知し，ログを表示する
 socket.on('chat.list', function(list) {

@@ -1,5 +1,6 @@
 var app = require('../app');
 var browser = require('tobi').createBrowser(5000, 'localhost');
+var should = require('should');
 
 describe('web', function() {
   describe('/', function() {
@@ -24,11 +25,10 @@ describe('web', function() {
     it('ul id:logが存在すること', function(done) {
       browser.get('/', function(res, $) {
         res.should.have.status(200);
-        $('ul.log').should.exist;
-        $('ul.id').should.not.exist; // へんなものが存在しないこともテスト．
-        // $('ul.log').should.have.one('li', 'テスト')
-        $('ul.test').should.not.exist;
-        // $('ul.test').should.have.one('li', 'テスト')
+        // テストとして機能してない
+        // $('ul#log').should.exist;
+        $('ul#log').should.not.have.many('li');
+        $('ul#test').should.have.one('li', 'テスト'); 
         done();
       });
     });
@@ -36,11 +36,10 @@ describe('web', function() {
     it('ul id:logが1回ポストすると子を持つこと', function(done) {
       browser.get('/', function(res, $) {
         res.should.have.status(200);
-        browser.fill({
-          name: 'input_name'
-        }).click('hand_p', function(res, $){
+        browser.click('hand_p', function(res, $){
           res.should.have.status(200);
-          $('ul.log').should.not.have.one('li', 'input_name')
+          // 通らない，確かにソースには追加されないのだが……
+          $('ul#log').should.have.one('li', 'input_name');
           done();
         });
       });

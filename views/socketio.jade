@@ -10,15 +10,20 @@ div
   p 20点先取．
   p 他のプレイヤもリアルタイムで手を変えてくるので，見切って適切な手を出しましょう．
   p Name:
-    input#name(type='text',name='name')
+    input#name(type='text', id='name')
   form(onsubmit='return send_p()', style='float:left;')
-    input(type='submit',value='ぱー')
+    input(type='submit',value='ぱー', id='hand_p')
   form(onsubmit='return send_c()', style='float:left;')
-    input(type='submit',value='ちょき')
+    input(type='submit',value='ちょき', id='hand_c')
   form(onsubmit='return send_g()', style='float:left;')
-    input(type='submit',value='ぐー')
+    input(type='submit',value='ぐー', id='hand_g')
   p(style='clear: both;')
     
 div
   h3 Log
   ul#log
+    li テスト
+    
+div
+  ul#test
+    li テスト

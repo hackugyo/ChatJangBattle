@@ -13,6 +13,7 @@
           res.should.have.status(200);
           res.should.have.header('Content-Type', 'text/html; charset=utf-8');
           $('title').text().should.equal('JANG Battle!! TOP');
+          app.close();
           done();
         });
       });

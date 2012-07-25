@@ -49,17 +49,19 @@ describe('web', function() {
     it('ul id:logが1回ポストすると子を持つこと', function(done) {
       browser.get('/socket', function(res, $) {
         res.should.have.status(200);
-        browser.click('form#hand_p :submit', function(res, $){
-          res.should.have.status(200);
-
-          // 通らない，確かにソースには追加されないのだが…
-          // $('#log').should.have.one('li', 'input_name');
-          $('#log').find('li').size().should.equal(1);
-          $('#log').find('li:first').text().should.equal('');
-          should.exist($('log'));
-          console.log($('body'));
-          done();
-          
+        browser.click('input_p', function(res, $){
+          browser.click('input_p', function(res, $){
+            res.should.have.status(200);
+            $('#input_p').val().should.equal('押した');
+            
+            // 通らない，確かにソースには追加されないのだが…
+            // $('#log').should.have.one('li', 'input_name');
+            $('#log').find('li').size().should.equal(1);
+            $('#log').find('li:first').text().should.equal('');
+            should.exist($('log'));
+            console.log($('body'));
+            done();
+          });
         });
       });
     });

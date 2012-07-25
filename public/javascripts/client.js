@@ -32,6 +32,7 @@ socket.on('chat.add', function(data) {
 });
 
 function send_p() {
+  $('#input_p').val('押した');
   socket.emit('chat.add',{
     name:$('#name').val(),
     message:'ぱー'

@@ -11,12 +11,12 @@ div
   p 他のプレイヤもリアルタイムで手を変えてくるので，見切って適切な手を出しましょう．
   p Name:
     input#name(type='text', id='name')
-  form#form_p(onsubmit='return send_p()', style='float:left;')
-    input#input_p(type='submit',value='ぱー')
-  form#form_c(onsubmit='return send_c()', style='float:left;')
-    input#input_c(type='submit',value='ちょき')
-  form#form_g(onsubmit='return send_g()', style='float:left;')
-    input#input_g(type='submit',value='ぐー')
+  form#form_p(onsubmit='return false', style='float:left;')
+    input#input_p(type='submit',value='ぱー', onclick='send_p();')
+  form#form_c(onsubmit='return false', style='float:left;')
+    input#input_c(type='submit',value='ちょき', onclick='send_c();')
+  form#form_g(onsubmit='return false', style='float:left;')
+    input#input_g(type='submit',value='ぐー', onclick='send_g();')
   p(style='clear: both;')
     
 div

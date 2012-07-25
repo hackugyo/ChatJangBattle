@@ -62,3 +62,10 @@ function send() {
   });
   return false;
 }
+
+$(function () {
+  $('#form_p').submit(function (ev) {
+    send_p();
+    return false;
+  });
+});

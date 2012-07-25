@@ -4,15 +4,15 @@
 
   app = require('../app');
 
-  browser = require('tobi').createBrowser(5000, 'localhost');
+  browser = require('tobi').createBrowser(5050, 'localhost');
 
   describe('web', function() {
     describe('/', function() {
-      it('titleがJANG Battle!! TOPであること', function(done) {
-        browser.get('/', function(res, $) {
+      it('titleがJANG Battle!!であること', function(done) {
+        browser.get('/socket', function(res, $) {
           res.should.have.status(200);
           res.should.have.header('Content-Type', 'text/html; charset=utf-8');
-          $('title').text().should.equal('JANG Battle!! TOP');
+          $('title').text().should.equal('JANG Battle!!');
           app.close();
           done();
         });

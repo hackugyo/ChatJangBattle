@@ -3,14 +3,14 @@ var browser = require('tobi').createBrowser(5000, 'localhost');
 var should = require('should');
 
 describe('web', function() {
-  describe('/', function() {
-    it('titleがJANG Battle!! TOPであること', function(done) {
-      browser.get('/', function(res, $) {
+  describe('/socket', function() {
+    it('titleがJANG Battle!! であること', function(done) {
+      browser.get('/socket', function(res, $) {
         res.should.have.status(200);
         res.should.have.header(
           'Content-Type', 'text/html; charset=utf-8'
         );
-        $('title').text().should.equal('JANG Battle!! TOP');
+        $('title').text().should.equal('JANG Battle!!');
         // $を使った記法はJQuery由来のもの．
         
         // app.close()がtobiのExampleだと推奨されてるが（逆にdone()がない），
@@ -23,7 +23,7 @@ describe('web', function() {
     it('後で書くよ');
 
     it('ul id:logが存在すること', function(done) {
-      browser.get('/', function(res, $) {
+      browser.get('/socket', function(res, $) {
         res.should.have.status(200);
         // existは以下のように書いてはだめ
         // $('ul#log').should.exist;
@@ -47,7 +47,7 @@ describe('web', function() {
     });
       
     it('ul id:logが1回ポストすると子を持つこと', function(done) {
-      browser.get('/', function(res, $) {
+      browser.get('/socket', function(res, $) {
         res.should.have.status(200);
         browser.click('form#hand_p :submit', function(res, $){
           res.should.have.status(200);

@@ -13,8 +13,8 @@ function addlog(data) {
   } else {
     text = text_first + text_last;
   }
-  console.log(date);
   $('#log').prepend($('<li/>').text(text));
+  console.log('ここだ！' + $('#log').find('li:first').text());
 }
 
 var socket = io.connect('http://localhost:5000/chat');

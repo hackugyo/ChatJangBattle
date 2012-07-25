@@ -25,10 +25,23 @@ describe('web', function() {
     it('ul id:logが存在すること', function(done) {
       browser.get('/', function(res, $) {
         res.should.have.status(200);
-        // テストとして機能してない
+        // existは以下のように書いてはだめ
         // $('ul#log').should.exist;
-        $('ul#log').should.not.have.many('li');
-        $('ul#test').should.have.one('li', 'テスト'); 
+        // $('ul.log').should.exist();
+        should.exist($('#log'));
+        // これにこけてしまうので，テストとして機能してない
+        // should.not.exist($('ul.notexist'));
+        // これを通してしまうので，テストとして機能してない
+        // should.exist($('ul.notexist'));
+        
+        $('#log').should.not.have.one('li');
+        $('#test').should.have.many('li', 'テスト');
+
+        // これもテストとして機能してない（どっちも通ってしまう）
+        // $('#test').should.not.have.many('li');
+        // $('#test').should.have.many('li');
+        // もっとださい書きかたで我慢
+         $('#test').find('li').size().should.equal(2);
         done();
       });
     });
@@ -36,11 +49,17 @@ describe('web', function() {
     it('ul id:logが1回ポストすると子を持つこと', function(done) {
       browser.get('/', function(res, $) {
         res.should.have.status(200);
-        browser.click('hand_p', function(res, $){
+        browser.click('form#hand_p :submit', function(res, $){
           res.should.have.status(200);
-          // 通らない，確かにソースには追加されないのだが……
-          $('ul#log').should.have.one('li', 'input_name');
+
+          // 通らない，確かにソースには追加されないのだが…
+          // $('#log').should.have.one('li', 'input_name');
+          $('#log').find('li').size().should.equal(1);
+          $('#log').find('li:first').text().should.equal('');
+          should.exist($('log'));
+          console.log($('body'));
           done();
+          
         });
       });
     });

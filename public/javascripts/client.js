@@ -13,12 +13,11 @@ function addlog(data) {
   } else {
     text = text_first + text_last;
   }
-  console.log(date);
   $('#log').prepend($('<li/>').text(text));
+  console.log('ここだ！' + $('#log').find('li:first').text());
 }
 
-// var socket = io.connect('http://localhost:5000/chat');
-var socket = io.connect('/chat');
+var socket = io.connect('http://localhost:5000/chat');
 
 // 一覧表示要請を検知し，ログを表示する
 socket.on('chat.list', function(list) {
@@ -33,6 +32,7 @@ socket.on('chat.add', function(data) {
 });
 
 function send_p() {
+  $('#input_p').val('押した');
   socket.emit('chat.add',{
     name:$('#name').val(),
     message:'ぱー'
@@ -62,3 +62,20 @@ function send() {
   });
   return false;
 }
+
+$(function () {
+  $('#form_p').submit(function (ev) {
+    send_p();
+    return false;
+  });
+  $('#form_c').submit(function (ev) {
+    send_c();
+    return false;
+  });
+  $('#form_g').submit(function (ev) {
+    send_g();
+    return false;
+  });
+
+  
+});

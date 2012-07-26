@@ -68,4 +68,14 @@ $(function () {
     send_p();
     return false;
   });
+  $('#form_c').submit(function (ev) {
+    send_c();
+    return false;
+  });
+  $('#form_g').submit(function (ev) {
+    send_g();
+    return false;
+  });
+
+  
 });

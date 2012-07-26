@@ -1,5 +1,6 @@
 var app = require('../app');
-var browser = require('tobi').createBrowser(5000, 'localhost');
+// var browser = require('tobi').createBrowser(5000, 'localhost');
+var browser = require('tobi').createBrowser(80, 'jangbattle.herokuapp.com');
 var should = require('should');
 
 describe('web', function() {
@@ -61,8 +62,8 @@ describe('web', function() {
         $('form#form_p').find('input').size().should.equal(1);
         
         $('#input_p').val().should.equal('ぱー');
-        
-        browser.click($('form#form_p :input#input_p'), function(res, $){
+        browser.submit($('#form_p'), function(res, $){
+        //browser.click($('form#form_p :input#input_p'), function(res, $){
           res.should.have.status(200);
 
           // 押したのでボタンが変わること

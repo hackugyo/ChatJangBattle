@@ -17,7 +17,7 @@ function addlog(data) {
   console.log('ここだ！' + $('#log').find('li:first').text());
 }
 
-var socket = io.connect('http://localhost:5000/chat');
+var socket = io.connect('/chat');
 
 // 一覧表示要請を検知し，ログを表示する
 socket.on('chat.list', function(list) {

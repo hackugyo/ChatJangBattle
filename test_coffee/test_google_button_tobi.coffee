@@ -13,7 +13,9 @@ describe 'web', ->
             browser.get '/socket', (res, $) ->
                 res.should.have.status 200
                 should.exist $('#log')
-                $('#log').find('li').size().should.equal(0);
+                $('#log').find('li').size().should.equal 0
+                $('#test').find('li').size().should.equal 2
+                done()
 
         it '1回ポストするとul logが子を持つこと', (done)->
             this.timeout(6000);

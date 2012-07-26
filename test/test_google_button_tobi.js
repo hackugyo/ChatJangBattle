@@ -20,7 +20,9 @@
         return browser.get('/socket', function(res, $) {
           res.should.have.status(200);
           should.exist($('#log'));
-          return $('#log').find('li').size().should.equal(0);
+          $('#log').find('li').size().should.equal(0);
+          $('#test').find('li').size().should.equal(2);
+          return done();
         });
       });
       return it('1回ポストするとul logが子を持つこと', function(done) {
